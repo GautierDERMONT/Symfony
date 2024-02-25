@@ -1,0 +1,14 @@
+"emmet.triggerExpansionOnTab": true,
+"emmet.showExpandedAbbreviation": "always",
+"emmet.syntaxProfiles": {
+  "html": {
+    "inline": "a"
+  }
+},
+"emmet.includeLanguages": {
+  "xml": "html",
+  "html": "html",
+  "vue-html": "html"
+}
+
+  
