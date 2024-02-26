@@ -9,6 +9,6 @@
 </head>
 <body>
     <h1>Bonjour chers élèves du BTS SIO SLAM 2, nous sommes aujourd'hui le {{ "now"|date("d/m/Y") }} et il est {{ "now"|date("H:i:s") }}, je m'appelle {{ prenom }} {{ nom }}</h1>
-    <img src="{{ asset('assets/images/' ~ imageName) }}" alt="ENSITECH_quadri-4.png">
+    <img src="{{ asset('public/assets/images/') ~ path | defaultImage }}" alt="defaultImage">
 </body>
 </html>
