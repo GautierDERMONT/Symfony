@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notre Restaurant@Ensup 2023-2024{% endblock %}
+
+{% block body %}
+    <!-- Section de Navigation -->
+    <section class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="{{ path('Accueil') }}" title="Logo">
+                    <img src="{{ asset('images/logo.png') }}" alt="Restaurant Logo" class="img-responsive">
+                </a>
+            </div>
+
+            <div class="menu text-right">
+                <ul>
+                    <li>
+                        <a href="{{ path('Accueil') }}">Le Baratie</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('categories') }}">Catégories</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('foods') }}">Les plats</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('contact') }}">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </section>
+    <!-- Fin Section Navigation -->
+
+    <!-- Recherche plats -->
+    <section class="food-search text-center">
+        <div class="container">
+            <h2>Bienvenue au Baratie !</h2>
+        </div>
+    </section>
+    <!-- Fin Recherche plats -->
+
+    <!-- Section menus "plaisir" -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="text-center">Faites vos choix avec nos menus "plaisir"...</h2>
+
+            <a href="{{ path('category_foods_poissons') }}">
+                <div class="box-3 float-container">
+                    <img src="{{ asset('images/Sole.jpeg') }}" alt="Pizza" class="img-responsive img-curve">
+                    <h3 class="float-text text-white">Poissons</h3>
+                </div>
+            </a>
+
+            <a href="{{ path('category_foods_pizzas') }}">
+                <div class="box-3 float-container">
+                    <img src="{{ asset('images/margarita.jpg') }}" alt="Burger" class="img-responsive img-curve">
+                    <h3 class="float-text text-white">Pizzas</h3>
+                </div>
+            </a>
+
+            <a href="{{ path('category_foods_burgers') }}">
+                <div class="box-3 float-container">
+                    <img src="{{ asset('images/cabillaud.jpeg') }}" alt="Momo" class="img-responsive img-curve">
+                    <h3 class="float-text text-white">Burgers</h3>
+                </div>
+            </a>
+
+            <div class="clearfix"></div>
+        </div>
+    </section>
+    <!-- Fin Section menus "plaisir" -->
+
+    <!-- Section À la carte -->
+    <section class="food-menu">
+        <div class="container">
+            <h2 class="text-center">À la carte (Temporaire)</h2>
+
+            <!-- Ajout du compteur -->
+            <div id="countdown" class="text-center"></div>
+
+            {% for plat in plats %}
+                <div class="food-menu-box">
+                    <div class="food-menu-img">
+                        <img src="{{ asset('images/' ~ plat.image) }}" alt="{{ plat.title }}" class="img-responsive img-curve">
+                    </div>
+
+                    <div class="food-menu-desc">
+                        <h4>{{ plat.title }}</h4>
+                        <p class="food-price">{{ plat.price }}</p>
+                        <p class="food-detail">
+                            <!-- Description du plat -->
+                        </p>
+                        <br>
+                        <a href="{{ plat.link }}" class="btn btn-primary">Commander</a>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <div class="clearfix"></div>
+        </div>
+
+        <p class="text-center">
+            <a href="#">Voir tous nos plats</a>
+        </p>
+    </section>
+    <!-- Fin Section À la carte -->
+
+    <!-- Liens vers les comptes sociaux -->
+    <section class="social">
+        <div class="container text-center">
+            <ul>
+                <li>
+                    <a class="social-icon" target ="_blank" href="https://www.instagram.com/">
+                        <img src="{{ asset('images/Insta.png') }}" height="50" width="50">
+                    </a>
+                </li>
+                <li>
+                    <a class="social-icon" target ="_blank" href="https://www.facebook.com/">
+                        <img src="{{ asset('images/facebook.png') }}" height="50" width="50">
+                    </a>
+                </li>
+                <li>
+                    <a class="social-icon" target ="_blank" href="https://www.linkedin.com/">
+                        <img src="{{ asset('images/linkedin.png') }}" height="50" width="50">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!-- Fin Section Liens vers les comptes sociaux -->
+
+    <!-- Section Droits réglementaires -->
+    <section class="footer">
+        <div class="container text-center">
+            <p>Tous droits réservés. Copyright <a href="{{ path('admin_login') }}">Le Baratie 2023-2024</a></p>
+        </div>
+    </section>
+    <!-- Fin Section Droits réglementaires -->
+{% endblock %}

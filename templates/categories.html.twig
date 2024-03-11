@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Website</title>
+
+    <link rel="stylesheet" href="{{ asset('puclic/assets/css/style.css') }}">
+</head>
+<body>
+    <section class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="{{ path('home') }}" title="Logo">
+                    <img src="{{ asset('public/assets/images/logo.png') }}" alt="Restaurant Logo" class="img-responsive">
+                </a>
+            </div>
+
+            <div class="menu text-right">
+                <ul>
+                    <li><a href="{{ path('home') }}">Le Baratie</a></li>
+                    <li><a href="{{ path('categories') }}">Catégories</a></li>
+                    <li><a href="{{ path('foods') }}">Les plats</a></li>
+                    <li><a href="{{ path('contact') }}">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="container">
+            <h2 class="text-center">Explorez nos saveurs !</h2>
+            
+            {% for category in categories %}
+                <a href="{{ path('category_foods', { 'categoryId': category.id }) }}">
+                    <div class="box-3 float-container">
+                        <img src="{{ asset(category.imagePath) }}" alt="{{ category.name }}" class="img-responsive img-curve">
+                        <h3 class="float-text text-white">{{ category.name }}</h3>
+                    </div>
+                </a>
+            {% endfor %}
+
+            <div class="clearfix"></div>
+        </div>
+    </section>
+
+    <section class="social">
+        <div class="container text-center">
+            <ul>
+                <li>
+                    <a class="social-icon" target="_blank" href="https://www.instagram.com/">
+                        <img src="{{ asset('puclic/assets/images/Insta.png') }}" height="50" width="50">
+                    </a>
+                </li>
+                <li>
+                    <a class="social-icon" target="_blank" href="https://www.facebook.com/">
+                        <img src="{{ asset('puclic/assets/images/facebook.png') }}" height="50" width="50">
+                    </a>
+                </li>
+                <li>
+                    <a class="social-icon" target="_blank" href="https://www.linkedin.com/">
+                        <img src="{{ asset('puclic/assets/images/linkedin.png') }}" height="50" width="50">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="container text-center">
+            <p>Construit et élaboré par <a href="#">La famille BTS SIO 2 - Ensup</a></p>
+        </div>
+    </section>
+
+</body>
+</html>

@@ -1,5 +1,20 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+# config/routes.yaml
+Accueil:
+    path: /Accueil
+    controller: App\Controller\IndexController::index
+
+# config/routes.yaml
+login:
+    path: /login
+    controller: App\Controller\Admin\LoginController::login
+    methods: [GET]
+
+login_process:
+    path: /login/process
+    controller: App\Controller\Admin\LoginController::loginProcess
+    methods: [POST]
+
+
+menu:
+    path: /menu
+    controller: App\Controller\Admin\MenuController::index

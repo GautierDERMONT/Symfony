@@ -1,0 +1,105 @@
+{# templates/pizza/pizzas.html.twig #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Important to make website responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre Restaurant@Ensup 2023-2024</title>
+
+    <!-- Link our CSS file -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+<body>
+    <!-- Début de la section de Navigation -->
+    {% include 'partials/navbar.html.twig' %}
+    <!-- Fin de la section de Navigation -->
+
+    <!-- Début Section des catégories -->
+    <section class="food-search text-center">
+        <div class="container">
+            <h2>Voici tous nos Pizzas</h2>
+        </div>
+    </section>
+
+    <!-- Section À la carte -->
+    <section class="food-menu">
+        <div class="container">
+            <h2 class="text-center">Nos pizzas</h2>
+
+            <div class="food-menu-box">
+                {% for pizza in pizzas %}
+                <div class="food-menu-img">
+                    <img src="{{ asset('images/' ~ pizza.image) }}" alt="{{ pizza.name }}" class="img-responsive img-curve">
+                </div>
+
+                <div class="food-menu-desc">
+                    <h4>{{ pizza.name }}</h4>
+                    <p class="food-price">{{ pizza.price }} €</p>
+                    <p class="food-detail">{{ pizza.description }}</p>
+                    <br>
+                    <a href="{{ path('order', {'name': pizza.name, 'price': pizza.price, 'image': pizza.image}) }}" class="btn btn-primary">Commander</a>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </section>
+    <!-- Fin Section À la carte -->
+
+    <!-- Formulaire de Commande -->
+    <div id="formulaire-commande" style="display: none;">
+        <h3>Entrez vos informations de commande</h3>
+        <form id="commande-formulaire">
+            <input type="hidden" id="plat-selectionne" name="plat-selectionne">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required>
+
+            <!-- Ajoutez d'autres champs au besoin -->
+
+            <br>
+            <button type="button" onclick="envoyerCommande()">Envoyer la commande</button>
+        </form>
+    </div>
+
+    <!-- social Section Starts Here -->
+    <section class="social">
+        <div class="container text-center">
+            <ul>
+                <li>
+                    <a class="social-icon" target ="_blank" href="https://www.instagram.com/">
+                        <img src="{{ asset('images/Insta.png') }}" height="50" width="50">
+                    </a>
+                </li>
+                <li>
+                    <a  class="social-icon" target ="_blank" href="https://www.facebook.com/">
+                        <img src="{{ asset('images/facebook.png') }}" height="50" width="50">
+                    </a>
+                </li>
+                <li>
+                    <a  class="social-icon" target ="_blank" href="https://www.linkedin.com/">
+                        <img src="{{ asset('images/linkedin.png') }}" height="50" width="50">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!-- social Section Ends Here -->
+
+    <!-- footer Section Starts Here -->
+    <section class="footer">
+        <div class="container text-center">
+            <p>Tous droits réservés. Copyright <a href="#">Ensup BTS SIO 2023-2024</a></p>
+        </div>
+    </section>
+    <!-- footer Section Ends Here -->
+
+    <!-- Script JavaScript -->
+    <script src="{{ asset('js/script.js') }}" defer></script>
+</body>
+</html>

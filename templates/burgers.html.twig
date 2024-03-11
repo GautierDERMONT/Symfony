@@ -1,0 +1,138 @@
+{# templates/burger/burgers.html.twig #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre Restaurant@Ensup 2023-2024</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+<body>
+    <section class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="{{ path('index') }}" title="Logo">
+                    <img src="{{ asset('images/logo.png') }}" alt="Restaurant Logo" class="img-responsive">
+                </a>
+            </div>
+
+            <div class="menu text-right">
+                <ul>
+                    <li>
+                        <a href="{{ path('index') }}">Le Baratie</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('categories') }}">Catégories</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('foods') }}">Les plats</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('contact') }}">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </section>
+
+    <section class="food-search text-center">
+        <div class="container">
+            <h2>Voici tous nos Burgers</h2>
+        </div>
+    </section>
+
+    <section class="food-menu">
+        <div class="container">
+            <h2 class="text-center">Nos burgers</h2>
+            {% for burger in burgers %}
+            <div class="food-menu-box">
+                <div class="food-menu-img">
+                    <img src="{{ asset('images/' ~ burger.image) }}" alt="{{ burger.name }}" class="img-responsive img-curve">
+                </div>
+
+                <div class="food-menu-desc">
+                    <h4>{{ burger.name }}</h4>
+                    <p class="food-price">{{ burger.price }} €</p>
+                    <p class="food-detail">{{ burger.description }}</p>
+                    <br>
+                    <a href="{{ path('order', {'name': burger.name, 'price': burger.price, 'image': burger.image}) }}" class="btn btn-primary">Commander</a>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="clearfix"></div>
+        </div>
+    </section>
+
+    <div id="formulaire-commande" style="display: none;">
+        <h3>Entrez vos informations de commande</h3>
+        <form id="commande-formulaire">
+            <input type="hidden" id="plat-selectionne" name="plat-selectionne">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required>
+            <br>
+            <button type="button" onclick="envoyerCommande()">Envoyer la commande</button>
+        </form>
+    </div>
+
+    <section class="social">
+        <div class="container text-center">
+            <ul>
+                <li>
+                    <a class="social-icon" target="_blank" href="https://www.instagram.com/">
+                        <img src="{{ asset('images/Insta.png') }}" height="50" width="50">
+                    </a>
+                </li>
+                <li>
+                    <a class="social-icon" target="_blank" href="https://www.facebook.com/">
+                        <img src="{{ asset('images/facebook.png') }}" height="50" width="50">
+                    </a>
+                </li>
+                <li>
+                    <a class="social-icon" target="_blank" href="https://www.linkedin.com/">
+                        <img src="{{ asset('images/linkedin.png') }}" height="50" width="50">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="container text-center">
+            <p>Tous droits réservés. Copyright <a href="#">Ensup BTS SIO 2023-2024</a></p>
+        </div>
+    </section>
+
+    <script>
+        function afficherFormulaireCommande(plat) {
+            document.getElementById('formulaire-commande').style.display = 'block';
+            document.getElementById('plat-selectionne').value = plat;
+        }
+
+        function envoyerCommande() {
+            var platSelectionne = document.getElementById('plat-selectionne').value;
+            var nom = document.getElementById('nom').value;
+            var prenom = document.getElementById('prenom').value;
+
+            fetch('./process-commande.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ plat: platSelectionne, nom: nom, prenom: prenom }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Commande envoyée avec succès !', data);
+                document.getElementById('formulaire-commande').style.display = 'none';
+            })
+            .catch(error => {
+                console.error('Erreur lors de l\'envoi de la commande :', error);
+            });
+        }
+    </script>
+</body>
+</html>
