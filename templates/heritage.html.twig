@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" 
+            content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1", minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge>
+
+        <title>{% block titreDocument %} titre du document par défaut {% endblock %}</title>
+    </head>
+    <body>
+       header
+
+       <hr>
+       {% block corpsDocument}
+            Contenu par défaut du corps du document
+        {% endblock %}
+        </hr>
+    </body>
+</html>
