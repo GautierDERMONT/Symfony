@@ -6,28 +6,26 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.min.css') }}">
-    <title>Document</title>
-
-    <title>{{firstname}} {{ name }}</title>
-</head> 
+    <title>Liste des Utilisateurs</title>
+</head>
 <body>
 <table class="table">
     <thead>
     <tr>
         <td>Prénom</td>
         <td>Nom</td>
-        <td>Age</td> 
-        </tr>
-    </thead>
-</body>
-{% for utilisateur in utilisateurs %}
-    <tr class="table-{% if loop.index is odd %}danger{% else %}success{% endif %}">
-        <td>{{ utilisateur.prenom }}</td>
-        <td>{{ utilisateur.nom }}</td>
-        <td>{{ utilisateur.age}}</td> 
+        <td>Age</td>
     </tr>
-{% endfor %}
-</tbody>
+    </thead>
+    <tbody>
+    {% for utilisateur in utilisateurs %}
+        <tr class="table-{% if loop.index is odd %}danger{% else %}success{% endif %}">
+            <td>{{ utilisateur.prenom }}</td>
+            <td>{{ utilisateur.nom }}</td>
+            <td>{{ utilisateur.age }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
 </table>
 </body>
 </html>

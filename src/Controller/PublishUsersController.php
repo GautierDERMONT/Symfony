@@ -17,7 +17,7 @@ class PublishUsersController extends AbstractController
             ['prenom' =>'Damien', 'nom' => 'DERMONT', 'age' =>26],
             ['prenom' =>'Vincent', 'nom' => 'DERMONT', 'age' =>62],
             ['prenom' =>'Thérèse', 'nom' => 'DERMONT', 'age' =>61],
-            ['prenom' =>'Daniel', 'nonm' => 'DERMONT', 'age' =>87],
+            ['prenom' =>'Daniel', 'nom' => 'DERMONT', 'age' =>87],
             
        ];
        return $this->render('publish_users/index.html.twig', [
